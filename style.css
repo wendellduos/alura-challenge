@@ -64,11 +64,6 @@ header {
   resize: none;
 }
 
-/* to fix */
-#user-input::placeholder {
-  color: #0a3871 !important;
-}
-
 #info-wrp {
   display: flex;
   gap: 0.4rem;
@@ -82,11 +77,15 @@ header {
   margin-block: 17px;
 }
 
-#output-wrp div {
+#output-wrp-blank {
   padding: 1.8rem;
   border-radius: 32px;
   background-color: white;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 35px rgba(0, 0, 0, 0.1);
+}
+
+#copy-btn {
+  display: none;
 }
 
 #output-wrp h2 {
@@ -105,6 +104,7 @@ header {
 #output {
   color: #495057;
   text-align: left;
+  word-break: break-all;
   font-size: 1.7rem;
   line-height: 2.4rem;
 }
