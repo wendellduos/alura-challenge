@@ -1,9 +1,11 @@
 const input = document.getElementById("user-input");
 const btnWrp = document.getElementById("btn-wrp");
 const outputWrp = document.getElementById("output-wrp");
+const outputWrpBlock = document.getElementById("output-wrp-block");
 const outputReplaceable = document.getElementById("output-replaceable");
 const output = document.getElementById("output");
 const copyBtn = document.getElementById("copy-btn");
+const desktopImg = document.getElementById("desktop-img");
 
 // encryption logic on click event
 document.getElementById("encrypt-btn").addEventListener("click", () => {
@@ -34,9 +36,16 @@ document.getElementById("decrypt-btn").addEventListener("click", () => {
 });
 
 function insertResultingContent(convertedTxt) {
+  input.value = ""; /* clear input field */
   outputReplaceable.innerHTML = "";
   output.innerHTML = convertedTxt;
   copyBtn.style.display = "block";
+
+  // change some styles on desktop view
+  if (screen.availWidth >= 1440) {
+    outputReplaceable.style.display = "none";
+    outputWrpBlock.style.justifyContent = "space-between";
+  }
 }
 
 copyBtn.addEventListener("click", () => {
@@ -60,23 +69,27 @@ copyBtn.addEventListener("click", () => {
 });
 
 // change outputWrp position based on sceen width
-// function updtOutputWrpBottom() {
-//   if (!screen.availWidth > 1440) {
-//     btnWrp.style.bottom = `${outputWrp.clientHeight + 60}px`;
-//   } else {
-//     btnWrp.style.top = `${screen.availHeight - btnWrp.clientHeight - 50}px`;
-//   }
-// }
+// to fit intended design.
+// runs function once on page load,
+// then listens for screen resizes to readjust if needed
+adjustOutputWrpPosition();
+includeDesktopStuff();
 
-// window.addEventListener("resize", () => {
-//   insertLargeScreenContent();
-// });
+addEventListener("resize", () => {
+  adjustOutputWrpPosition();
+  includeDesktopStuff();
+});
 
-// function insertLargeScreenContent() {
-//   if (screen.availWidth >= 1440) {
-//     const image = `<img src="./assets/guy-illustration.svg" alt="Ilustração de um menino com segurando uma lupa" />`;
-//     const currentContent = outputWrpScreen.innerHTML;
+function adjustOutputWrpPosition() {
+  if (screen.availWidth < 1440) {
+    btnWrp.style.bottom = `${outputWrp.clientHeight + 60}px`;
+  } else {
+    btnWrp.style.bottom = `50px`;
+  }
+}
 
-//     outputWrpScreen.innerHTML = `${image}${currentContent}`;
-//   }
-// }
+function includeDesktopStuff() {
+  if (screen.availWidth >= 1440) {
+    desktopImg.style.backgroundImage = `url('./assets/guy-illustration.svg')`;
+  }
+}

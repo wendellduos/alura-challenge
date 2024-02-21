@@ -77,7 +77,7 @@ header {
   margin-block: 17px;
 }
 
-#output-wrp-blank {
+#output-wrp-block {
   padding: 1.8rem;
   border-radius: 32px;
   background-color: white;
@@ -95,6 +95,10 @@ header {
   line-height: 2rem;
 }
 
+#output-wrp-block {
+  overflow: auto;
+}
+
 #out-placeholder {
   color: #495057;
   text-align: center;
@@ -104,13 +108,18 @@ header {
 #output {
   color: #495057;
   text-align: left;
-  word-break: break-all;
+  word-break: normal;
   font-size: 1.7rem;
   line-height: 2.4rem;
 }
 
 #copy-btn {
   margin-top: 26px;
+}
+
+#desktop-img {
+  aspect-ratio: 1/1;
+  background-repeat: no-repeat;
 }
 
 @media screen and (min-width: 768px) {
@@ -168,7 +177,7 @@ header {
     height: 100%;
   }
 
-  #output-wrp div {
+  #output-wrp-block {
     display: flex;
     flex-direction: column;
     justify-content: center;
