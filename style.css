@@ -64,6 +64,7 @@ header {
 #info-wrp {
   display: flex;
   gap: 0.4rem;
+  transition: margin-left 0.1s ease;
 }
 
 #info-wrp p {
@@ -79,7 +80,7 @@ header {
   border-radius: 32px;
   background-color: white;
   box-shadow: 0 2px 35px rgba(0, 0, 0, 0.1);
-  overflow: auto;
+  overflow-y: auto;
 }
 
 #output-wrp h2 {
@@ -98,7 +99,7 @@ header {
 #output {
   color: #495057;
   text-align: left;
-  word-break: normal;
+  word-break: break-all;
   font-size: 1.7rem;
   line-height: 2.4rem;
 }

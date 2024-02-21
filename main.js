@@ -46,6 +46,8 @@ function insertResultingContent(convertedTxt) {
     outputReplaceable.style.display = "none";
     outputWrpBlock.style.justifyContent = "space-between";
   }
+
+  adjustOutputWrpPosition();
 }
 
 copyBtn.addEventListener("click", () => {
@@ -70,16 +72,51 @@ copyBtn.addEventListener("click", () => {
 
 // change outputWrp position based on sceen width
 // to fit intended design.
-// runs function once on page load,
-// then listens for screen resizes to readjust if needed
+// listens for screen resizes to readjust if needed
 adjustOutputWrpPosition();
 
-addEventListener("resize", adjustOutputWrpPosition());
+addEventListener("resize", () => {
+  adjustOutputWrpPosition();
+});
 
 function adjustOutputWrpPosition() {
-  if (screen.availWidth < 1440) {
+  if (screen.width < 1440) {
     btnWrp.style.bottom = `${outputWrp.clientHeight + 60}px`;
   } else {
     btnWrp.style.bottom = `50px`;
   }
+}
+
+// deny invalid characters
+input.addEventListener("input", (e) => {
+  if (e.data != null) {
+    if (
+      e.data.match(
+        new RegExp("[A-ZÁÀÃÂÉÈẼÊÍÌĨÎÓÒÕÔÚÙŨÛÇáàãâéèẽêíìĩîóòõôúùũûç]")
+      )
+    ) {
+      input.value = e.target.value.slice(0, -1);
+
+      wiggleInfoWrp();
+    }
+  }
+});
+
+function wiggleInfoWrp() {
+  const infoWrp = document.getElementById("info-wrp");
+  const animSteps = [10, 2, 5, 0];
+
+  infoWrp.style.marginLeft = `${animSteps[0]}px`;
+
+  setTimeout(() => {
+    infoWrp.style.marginLeft = `${animSteps[1]}px`;
+  }, 100);
+
+  setTimeout(() => {
+    infoWrp.style.marginLeft = `${animSteps[2]}px`;
+  }, 200);
+
+  setTimeout(() => {
+    infoWrp.style.marginLeft = `${animSteps[3]}px`;
+  }, 300);
 }
