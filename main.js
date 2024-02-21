@@ -37,9 +37,9 @@ document.getElementById("decrypt-btn").addEventListener("click", () => {
 
 function insertResultingContent(convertedTxt) {
   input.value = ""; /* clear input field */
-  outputReplaceable.innerHTML = "";
+  outputReplaceable.innerHTML = ""; /* remove placeholder content from div */
   output.innerHTML = convertedTxt;
-  copyBtn.style.display = "block";
+  copyBtn.style.display = "block"; /* show copy btn */
 
   // change some styles on desktop view
   if (screen.availWidth >= 1440) {
@@ -73,23 +73,13 @@ copyBtn.addEventListener("click", () => {
 // runs function once on page load,
 // then listens for screen resizes to readjust if needed
 adjustOutputWrpPosition();
-includeDesktopStuff();
 
-addEventListener("resize", () => {
-  adjustOutputWrpPosition();
-  includeDesktopStuff();
-});
+addEventListener("resize", adjustOutputWrpPosition());
 
 function adjustOutputWrpPosition() {
   if (screen.availWidth < 1440) {
     btnWrp.style.bottom = `${outputWrp.clientHeight + 60}px`;
   } else {
     btnWrp.style.bottom = `50px`;
-  }
-}
-
-function includeDesktopStuff() {
-  if (screen.availWidth >= 1440) {
-    desktopImg.style.backgroundImage = `url('./assets/guy-illustration.svg')`;
   }
 }
