@@ -47,3 +47,5 @@ function insertLargeScreenContent() {
     outputWrpScreen.innerHTML = `${image}${currentContent}`;
   }
 }
+
+// encryption logic
