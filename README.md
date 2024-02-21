@@ -1,3 +1,3 @@
 # alura-challenge
 
-Added this readme, because we do that... appearently.
+Added this readme, because we do that... apparently.
